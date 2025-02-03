@@ -1,0 +1,74 @@
+# Ignore DSK files
+*.dsk
+
+# Ignore DCU files
+*.dcu
+
+# Ignore backup files
+*.~*
+*.bak
+*.old
+*.orig
+
+# Ignore local configuration files
+*.local
+*.identcache
+*.localhistory
+
+# Ignore map and tds files
+*.map
+*.tds
+
+# Ignore executables and DLLs
+*.exe
+*.dll
+
+# Ignore intermediate and output directories
+**/Win32/Debug/*
+**/Win32/Release/*
+**/Win64/Debug/*
+**/Win64/Release/*
+**/iOSDevice32/Debug/*
+**/iOSDevice32/Release/*
+**/iOSDevice64/Debug/*
+**/iOSDevice64/Release/*
+**/Android/Debug/*
+**/Android/Release/*
+
+# Ignore packages output
+*.bpl
+*.dcp
+*.bpi
+
+# Ignore generated files
+*.groupproj.local
+*.groupproj.cache
+*.dproj.local
+*.dproj.localhistory
+
+# Ignore log files
+*.log
+
+# Ignore Delphi FMX specific files
+**/__recovery/*
+*.gdbtable
+*.gdbtable.cache
+*.ijlog
+*.ncb
+*.obj
+*.pch
+*.res
+*.resu
+
+# Ignore Delphi FMX mobile specific files
+*.ios_x86
+*.ios_armv7
+*.ios_arm64
+*.android
+*.macos_x64
+
+# Ignore config files
+*.cfg
+
+# Ignore .idea folder (IntelliJ-based IDEs)
+.idea/
