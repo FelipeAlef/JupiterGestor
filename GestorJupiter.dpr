@@ -9,7 +9,8 @@ uses
   uCompra in 'uCompra.pas' {frmCompra},
   uCompras in 'uCompras.pas' {frmCompras},
   uVenda in 'uVenda.pas' {frmVenda},
-  uVendas in 'uVendas.pas' {frmVendas};
+  uVendas in 'uVendas.pas' {frmVendas},
+  uUtils in 'uUtils.pas';
 
 {$R *.res}
 

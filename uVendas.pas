@@ -11,7 +11,7 @@ uses
   FireDAC.Stan.Async, FireDAC.DApt, Data.DB, FireDAC.Comp.DataSet,
   FireDAC.Comp.Client, Data.Bind.EngExt, Fmx.Bind.DBEngExt, Fmx.Bind.Grid,
   System.Bindings.Outputs, Fmx.Bind.Editors, Data.Bind.Components,
-  Data.Bind.Grid, Data.Bind.DBScope;
+  Data.Bind.Grid, Data.Bind.DBScope, FMX.DateTimeCtrls;
 
 type
   TfrmVendas = class(TForm)
@@ -37,9 +37,12 @@ type
     LinkGridToDataSourceBindSourceDB1: TLinkGridToDataSource;
     BindSourceDB2: TBindSourceDB;
     LinkGridToDataSourceBindSourceDB2: TLinkGridToDataSource;
+    DateEdit1: TDateEdit;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure DataSource1DataChange(Sender: TObject; Field: TField);
     procedure FormCreate(Sender: TObject);
+    procedure QrVendasBeforeOpen(DataSet: TDataSet);
+    procedure DateEdit1Change(Sender: TObject);
   private
     { Private declarations }
   public
@@ -62,6 +65,12 @@ begin
   QrItens.Open;
 end;
 
+procedure TfrmVendas.DateEdit1Change(Sender: TObject);
+begin
+  QrVendas.Close;
+  QrVendas.Open;
+end;
+
 procedure TfrmVendas.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
   Action := TCloseAction.caFree;
@@ -74,6 +83,11 @@ begin
   QrItens.Connection := frmPrincipal.FC;
   QrVEndas.Open;
   QrItens.Open;
+end;
+
+procedure TfrmVendas.QrVendasBeforeOpen(DataSet: TDataSet);
+begin
+  QrVendas.ParamByName('pData').AsString := FormatDateTime('yyyy-mm-dd', DateEdit1.Date);
 end;
 
 end.

@@ -1690,7 +1690,7 @@ object frmVendas: TfrmVendas
     Margins.Right = 5.000000000000000000
     Margins.Bottom = 5.000000000000000000
     Position.X = 5.000000000000000000
-    Position.Y = 5.000000000000000000
+    Position.Y = 47.000000000000000000
     Size.Width = 290.000000000000000000
     Size.Height = 265.000000000000000000
     Size.PlatformDefault = False
@@ -1708,12 +1708,28 @@ object frmVendas: TfrmVendas
     Margins.Right = 5.000000000000000000
     Margins.Bottom = 5.000000000000000000
     Size.Width = 290.000000000000000000
-    Size.Height = 195.000000000000000000
+    Size.Height = 153.000000000000000000
     Size.PlatformDefault = False
     TabOrder = 0
     RowCount = 0
     Viewport.Width = 286.000000000000000000
-    Viewport.Height = 170.000000000000000000
+    Viewport.Height = 128.000000000000000000
+  end
+  object DateEdit1: TDateEdit
+    Date = 45695.000000000000000000
+    DateFormatKind = Long
+    OnChange = DateEdit1Change
+    Align = Top
+    Margins.Left = 5.000000000000000000
+    Margins.Top = 5.000000000000000000
+    Margins.Right = 5.000000000000000000
+    Margins.Bottom = 5.000000000000000000
+    Position.X = 5.000000000000000000
+    Position.Y = 5.000000000000000000
+    Size.Width = 290.000000000000000000
+    Size.Height = 32.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 15
   end
   object QrItens: TFDQuery
     MasterSource = DataSource1
@@ -1767,16 +1783,25 @@ object frmVendas: TfrmVendas
     end
   end
   object QrVendas: TFDQuery
+    BeforeOpen = QrVendasBeforeOpen
     Connection = frmPrincipal.FC
     SQL.Strings = (
-      '       SELECT * FROM Vendas ORDER BY ID DESC')
+      '       SELECT * FROM Vendas'
+      '       WHERE DATE(DATA_VENDA) = :pData'
+      '       ORDER BY ID DESC')
     Left = 160
     Top = 136
+    ParamData = <
+      item
+        Name = 'PDATA'
+        ParamType = ptInput
+      end>
     object QrVendasID: TFDAutoIncField
       FieldName = 'ID'
       Origin = 'ID'
       ProviderFlags = [pfInWhere, pfInKey]
       ReadOnly = False
+      Visible = False
     end
     object QrVendasDATA_VENDA: TDateTimeField
       FieldName = 'DATA_VENDA'

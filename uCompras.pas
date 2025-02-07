@@ -12,7 +12,8 @@ uses
   FireDAC.Comp.Client, System.Rtti, FMX.Grid.Style, Data.Bind.EngExt,
   Fmx.Bind.DBEngExt, Fmx.Bind.Grid, System.Bindings.Outputs, Fmx.Bind.Editors,
   Data.Bind.Components, Data.Bind.Grid, Data.Bind.DBScope,
-  FMX.Controls.Presentation, FMX.ScrollBox, FMX.Grid;
+  FMX.Controls.Presentation, FMX.ScrollBox, FMX.Grid, FMX.Edit,
+  FMX.DateTimeCtrls;
 
 type
   TfrmCompras = class(TForm)
@@ -38,9 +39,12 @@ type
     DataSource1: TDataSource;
     BindSourceDB2: TBindSourceDB;
     LinkGridToDataSourceBindSourceDB2: TLinkGridToDataSource;
+    DateEdit1: TDateEdit;
     procedure FormCreate(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure DataSource1DataChange(Sender: TObject; Field: TField);
+    procedure QrCOmprasBeforeOpen(DataSet: TDataSet);
+    procedure DateEdit1Change(Sender: TObject);
   private
     { Private declarations }
   public
@@ -63,6 +67,12 @@ begin
   QrItens.Open;
 end;
 
+procedure TfrmCompras.DateEdit1Change(Sender: TObject);
+begin
+  QrCOmpras.Close;
+  QrCOmpras.Open;
+end;
+
 procedure TfrmCompras.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
   Action := TCloseAction.caFree;
@@ -75,6 +85,11 @@ begin
   QrItens.Connection := frmPrincipal.FC;
   QrCOmpras.Open;
   QrItens.Open;
+end;
+
+procedure TfrmCompras.QrCOmprasBeforeOpen(DataSet: TDataSet);
+begin
+  QrCOmpras.ParamByName('pData').AsString := FormatDateTime('yyyy-mm-dd', DateEdit1.Date);
 end;
 
 end.

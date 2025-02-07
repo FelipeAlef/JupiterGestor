@@ -10,7 +10,7 @@ object frmCompras: TfrmCompras
   FormFactor.Devices = [Desktop]
   OnCreate = FormCreate
   OnClose = FormClose
-  DesignerMasterStyle = 0
+  DesignerMasterStyle = 3
   object StyleBook1: TStyleBook
     Styles = <
       item
@@ -2057,14 +2057,14 @@ object frmCompras: TfrmCompras
     Margins.Right = 5.000000000000000000
     Margins.Bottom = 5.000000000000000000
     Position.X = 5.000000000000000000
-    Position.Y = 5.000000000000000000
+    Position.Y = 47.000000000000000000
     Size.Width = 322.000000000000000000
     Size.Height = 265.000000000000000000
     Size.PlatformDefault = False
     TabOrder = 1
     RowCount = 0
-    Viewport.Width = 318.000000000000000000
-    Viewport.Height = 240.000000000000000000
+    Viewport.Width = 322.000000000000000000
+    Viewport.Height = 233.000000000000000000
   end
   object StringGrid2: TStringGrid
     Align = Client
@@ -2075,19 +2075,45 @@ object frmCompras: TfrmCompras
     Margins.Right = 5.000000000000000000
     Margins.Bottom = 5.000000000000000000
     Size.Width = 322.000000000000000000
-    Size.Height = 235.000000000000000000
+    Size.Height = 193.000000000000000000
     Size.PlatformDefault = False
     TabOrder = 0
     RowCount = 0
-    Viewport.Width = 318.000000000000000000
-    Viewport.Height = 210.000000000000000000
+    Viewport.Width = 322.000000000000000000
+    Viewport.Height = 161.000000000000000000
+  end
+  object DateEdit1: TDateEdit
+    Date = 45695.000000000000000000
+    DateFormatKind = Long
+    OnChange = DateEdit1Change
+    Align = Top
+    Margins.Left = 5.000000000000000000
+    Margins.Top = 5.000000000000000000
+    Margins.Right = 5.000000000000000000
+    Margins.Bottom = 5.000000000000000000
+    Position.X = 5.000000000000000000
+    Position.Y = 5.000000000000000000
+    Size.Width = 322.000000000000000000
+    Size.Height = 32.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 16
   end
   object QrCOmpras: TFDQuery
+    BeforeOpen = QrCOmprasBeforeOpen
     Connection = frmPrincipal.FC
     SQL.Strings = (
-      '       SELECT * FROM Compras ORDER BY ID DESC')
+      '       SELECT * FROM Compras'
+      '       WHERE DATE(DATA_COMPRA) = :pData '
+      '       ORDER BY ID DESC')
     Left = 160
     Top = 136
+    ParamData = <
+      item
+        Name = 'PDATA'
+        DataType = ftString
+        ParamType = ptInput
+        Value = Null
+      end>
     object QrCOmprasID: TFDAutoIncField
       FieldName = 'ID'
       Origin = 'ID'
@@ -2207,7 +2233,7 @@ object frmCompras: TfrmCompras
   object BindSourceDB2: TBindSourceDB
     DataSet = QrItens
     ScopeMappings = <>
-    Left = 152
-    Top = 248
+    Left = 104
+    Top = 65528
   end
 end
